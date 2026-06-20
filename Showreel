@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showreel | Dedi Santoso</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#0b0b0b;
+  color:#ffffff;
+  line-height:1.7;
+}
+
+header{
+  padding:80px 20px;
+  text-align:center;
+  background:
+  linear-gradient(
+  rgba(0,0,0,.75),
+  rgba(0,0,0,.90)
+  );
+}
+
+.logo{
+  color:#d4af37;
+  letter-spacing:4px;
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+h1{
+  margin:0;
+  font-size:48px;
+}
+
+.subtitle{
+  margin-top:15px;
+  color:#d4af37;
+  font-size:20px;
+}
+
+.tagline{
+  max-width:800px;
+  margin:30px auto 0;
+  color:#cccccc;
+}
+
+section{
+  padding:80px 20px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+
+h2{
+  color:#d4af37;
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.card{
+  background:#151515;
+  border-radius:20px;
+  padding:30px;
+  margin-bottom:40px;
+}
+
+.card h3{
+  margin-top:0;
+}
+
+.video-box{
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+  overflow:hidden;
+  border-radius:16px;
+  margin-top:20px;
+}
+
+.video-box iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(320px,1fr));
+  gap:25px;
+}
+
+a.button{
+  display:inline-block;
+  margin-top:30px;
+  padding:14px 30px;
+  background:#d4af37;
+  color:#000;
+  text-decoration:none;
+  border-radius:50px;
+  font-weight:bold;
+}
+
+footer{
+  padding:40px;
+  text-align:center;
+  color:#777;
+  border-top:1px solid #222;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+LISTER RECORD
+</div>
+
+<h1>SHOWREEL</h1>
+
+<div class="subtitle">
+Dedi Santoso
+</div>
+
+<div class="tagline">
+Kumpulan karya pilihan di bidang esports, TVC, mars, dan produksi musik untuk berbagai kebutuhan event dan multimedia.
+</div>
+
+<a href="index.html" class="button">
+← Kembali ke Beranda
+</a>
+
+</header>
+
+
+<section>
+
+<div class="container">
+
+<h2>🌍 Proyek Unggulan Internasional</h2>
+
+<div class="card">
+
+<h3>M7 World Championship</h3>
+
+<p>
+Music Producer – Ceremony & Event Music Production
+</p>
+
+<div class="video-box">
+
+<iframe
+src="https://www.youtube.com/embed/ZyYyKXdDvgQ?start=251"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>🎮 Esports</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Mobile Legends Professional League Indonesia</h3>
+<p>Music Producer – Season 9 hingga Sekarang</p>
+<a href="https://youtu.be/AW1YQQTz4sk?t=1846" target="_blank">
+Tonton Showreel →
+</a>
+</div>
+
+<div class="card">
+<h3>PUBG Mobile</h3>
+<p>Music Producer – Ceremony & Event Music Production</p>
+<a href="https://youtu.be/hrB8NnRgj-w?t=834" target="_blank">
+Tonton Showreel →
+</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>📺 TVC & Brand</h2>
+
+<div class="card">
+
+<h3>Sikat Gigi Formula</h3>
+
+<p>
+Kolaborasi bersama Cleopatra dan Gigi Cherrybelle.
+</p>
+
+<a href="https://youtu.be/9-mumHs5wOQ?t=29" target="_blank">
+Tonton Showreel →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>🏛 Mars & Theme Song</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Mars – Showreel 01</h3>
+
+<a href="https://youtu.be/2WmTLTRWC50?t=8" target="_blank">
+Tonton Showreel →
+</a>
+
+</div>
+
+<div class="card">
+<h3>Mars – Showreel 02</h3>
+
+<a href="https://www.youtube.com/watch?v=Qg4I_lFwN8c" target="_blank">
+Tonton Showreel →
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 Dedi Santoso • Lister Record • Bengkulu, Indonesia
+
+</footer>
+
+</body>
+</html>
