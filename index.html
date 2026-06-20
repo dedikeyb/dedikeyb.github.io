@@ -1,221 +1,869 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dedi Santoso | Lister Record</title><style>
+<title>Dedi Santoso — Komposer · Produser Musik · Lister Record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0908;
+    --panel:#16140F;
+    --panel2:#1D1A14;
+    --ink:#E8E3D9;
+    --ink-dim:#9C9384;
+    --ink-dimmer:#6B6358;
+    --teal:#4A93A8;
+    --teal-dim:#2E5E6C;
+    --terra:#C24F12;
+    --terra-dim:#7A340F;
+    --line:#2A271F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--terra);color:var(--bg);}
 
-*{
-  box-sizing:border-box;
-}
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.04em;
+  }
 
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#0b0b0b;
-  color:#ffffff;
-  line-height:1.7;
-}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
 
-.hero{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:40px 20px;
-  background:
-  linear-gradient(
-  rgba(0,0,0,.75),
-  rgba(0,0,0,.85));
-}
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-}
+  /* ---------- VU METER SIGNATURE DIVIDER ---------- */
+  .vu{
+    display:flex;
+    align-items:flex-end;
+    gap:3px;
+    height:18px;
+    margin:0 0 0 0;
+  }
+  .vu span{
+    display:block;
+    width:3px;
+    background:var(--teal-dim);
+  }
+  .vu span:nth-child(1){height:30%;}
+  .vu span:nth-child(2){height:55%;}
+  .vu span:nth-child(3){height:40%;}
+  .vu span:nth-child(4){height:80%;}
+  .vu span:nth-child(5){height:60%;}
+  .vu span:nth-child(6){height:100%;background:var(--terra);}
+  .vu span:nth-child(7){height:45%;}
+  .vu span:nth-child(8){height:70%;}
+  .vu span:nth-child(9){height:35%;}
+  .vu span:nth-child(10){height:50%;}
 
-.logo{
-  font-size:18px;
-  letter-spacing:4px;
-  color:#d4af37;
-  margin-bottom:20px;
-}
+  .divider{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:0;
+  }
 
-h1{
-  font-size:52px;
-  margin:0;
-}
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(10,9,8,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+  .logo span{color:var(--teal);}
+  .navlinks{
+    display:flex;
+    gap:32px;
+    font-size:0.85rem;
+  }
+  .navlinks a{
+    color:var(--ink-dim);
+    transition:color 0.2s;
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.03em;
+  }
+  .navlinks a:hover{color:var(--teal);}
+  .navlinks a:focus-visible, a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
 
-.subtitle{
-  font-size:22px;
-  color:#d4af37;
-  margin-top:15px;
-}
+  @media(max-width:720px){
+    .navlinks{display:none;}
+  }
 
-.tagline{
-  max-width:700px;
-  margin:30px auto;
-  color:#cccccc;
-}
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    padding-top:90px;
+    padding-bottom:60px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+    width:100%;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--teal);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--terra);
+    box-shadow:0 0 12px var(--terra);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,5.2vw,4.4rem);
+    line-height:1.04;
+    margin-bottom:24px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--ink-dim);
+  }
+  .hero p.lede{
+    font-size:1.05rem;
+    color:var(--ink-dim);
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  .hero-roles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:36px;
+  }
+  .role-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.74rem;
+    padding:7px 14px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    color:var(--ink-dim);
+  }
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 26px;
+    font-size:0.9rem;
+    font-weight:500;
+    border-radius:4px;
+    transition:all 0.2s;
+  }
+  .btn-primary{
+    background:var(--terra);
+    color:#fff;
+  }
+  .btn-primary:hover{background:#D9580F;transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
 
-.button{
-  display:inline-block;
-  padding:14px 30px;
-  border-radius:50px;
-  background:#d4af37;
-  color:#000;
-  text-decoration:none;
-  font-weight:bold;
-}
+  .hero-image{
+    position:relative;
+    border-radius:6px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    aspect-ratio:4/5;
+  }
+  .hero-image img{
+    width:100%;height:100%;
+    object-fit:cover;
+    filter:saturate(0.92) contrast(1.05);
+  }
+  .hero-image::after{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,9,8,0) 55%,rgba(10,9,8,0.75) 100%);
+  }
+  .hero-image-cap{
+    position:absolute;
+    bottom:18px;left:18px;right:18px;
+    z-index:2;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    letter-spacing:0.04em;
+  }
 
-section{
-  padding:80px 20px;
-}
+  @media(max-width:880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-image{order:-1;aspect-ratio:16/10;}
+  }
 
-h2{
-  text-align:center;
-  margin-bottom:50px;
-  color:#d4af37;
-}
+  /* ---------- SECTION SHELL ---------- */
+  section{
+    padding:110px 0;
+    position:relative;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:56px;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--teal);
+    letter-spacing:0.1em;
+    margin-bottom:14px;
+    display:block;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem,3.2vw,2.6rem);
+  }
+  .section-sub{
+    color:var(--ink-dim);
+    max-width:38ch;
+    font-size:0.95rem;
+  }
 
-.grid{
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-}
+  /* ---------- ABOUT ---------- */
+  .about-body{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .about-body p{
+    color:var(--ink-dim);
+    margin-bottom:18px;
+    font-size:1rem;
+  }
+  .about-body p strong{color:var(--ink);font-weight:500;}
+  @media(max-width:780px){.about-body{grid-template-columns:1fr;}}
 
-.card{
-  background:#151515;
-  padding:30px;
-  border-radius:18px;
-}
+  /* ---------- TIMELINE ---------- */
+  .timeline{
+    border-left:1px solid var(--line);
+    padding-left:0;
+  }
+  .tl-item{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:28px;
+    padding:28px 0 28px 28px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .tl-item::before{
+    content:'';
+    position:absolute;
+    left:-5px;top:36px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--teal-dim);
+  }
+  .tl-item:first-child::before{border-color:var(--terra);background:var(--terra);}
+  .tl-year{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.9rem;
+    color:var(--teal);
+    padding-top:2px;
+  }
+  .tl-content h3{
+    font-size:1.05rem;
+    font-weight:500;
+    margin-bottom:8px;
+    color:var(--ink);
+  }
+  .tl-content p{
+    color:var(--ink-dim);
+    font-size:0.92rem;
+    max-width:60ch;
+  }
+  @media(max-width:600px){
+    .tl-item{grid-template-columns:1fr;gap:8px;}
+  }
 
-.card h3{
-  margin-top:0;
-}
+  /* ---------- WORKS / CREDIT ROLL ---------- */
+  .credit-block{
+    margin-bottom:64px;
+  }
+  .credit-block:last-child{margin-bottom:0;}
+  .credit-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:24px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .credit-head h3{
+    font-size:1.2rem;
+    font-weight:500;
+  }
+  .credit-head .mono{
+    font-size:0.74rem;
+    color:var(--ink-dimmer);
+  }
+  .credit-list{
+    list-style:none;
+  }
+  .credit-list li{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:16px;
+    padding:13px 0;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    font-size:0.95rem;
+  }
+  .credit-list li:last-child{border-bottom:none;}
+  .credit-role{
+    color:var(--ink-dimmer);
+    font-size:0.82rem;
+    font-family:'JetBrains Mono',monospace;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .credit-name{color:var(--ink);}
 
-.timeline{
-  max-width:850px;
-  margin:auto;
-}
+  .achievement-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--terra);
+    padding:28px 32px;
+    border-radius:4px;
+    margin-bottom:64px;
+  }
+  .achievement-card .mono{font-size:0.74rem;color:var(--terra);display:block;margin-bottom:10px;}
+  .achievement-card h3{font-size:1.3rem;margin-bottom:6px;}
+  .achievement-card p{color:var(--ink-dim);font-size:0.92rem;}
 
-.timeline p{
-  margin-bottom:22px;
-}
+  /* ---------- TECH / SKILLS GRID ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .skill-card{
+    background:var(--bg);
+    padding:32px 28px;
+  }
+  .skill-card h3{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--teal);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .skill-card ul{list-style:none;}
+  .skill-card li{
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+    font-size:0.92rem;
+    color:var(--ink-dim);
+  }
+  .skill-card li:last-child{border-bottom:none;}
+  @media(max-width:780px){.skills-grid{grid-template-columns:1fr;}}
 
-.about{
-  max-width:850px;
-  margin:auto;
-  text-align:center;
-  color:#d5d5d5;
-}
+  /* ---------- VISION ---------- */
+  .vision{
+    background:var(--panel);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+  }
+  .vision .wrap{max-width:760px;}
+  .vision .eyebrow{justify-content:center;}
+  .vision h2{
+    font-size:clamp(1.7rem,3.6vw,2.6rem);
+    line-height:1.3;
+    font-weight:500;
+    font-style:italic;
+  }
+  .vision p{
+    margin-top:24px;
+    color:var(--ink-dim);
+    font-size:1rem;
+    max-width:56ch;
+    margin-left:auto;margin-right:auto;
+  }
 
-.contact{
-  text-align:center;
-}
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{
+    padding-top:110px;
+    padding-bottom:60px;
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .contact h2{
+    font-size:clamp(2rem,4.4vw,3.2rem);
+    margin-bottom:20px;
+  }
+  .contact p.lede{
+    color:var(--ink-dim);
+    max-width:42ch;
+    margin-bottom:32px;
+  }
+  .contact-list{list-style:none;}
+  .contact-list li{
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .contact-list li:last-child{border-bottom:1px solid var(--line);}
+  .contact-list .mono{
+    font-size:0.72rem;
+    color:var(--ink-dimmer);
+    display:block;
+    margin-bottom:6px;
+  }
+  .contact-list a{
+    font-size:1.05rem;
+    transition:color 0.2s;
+  }
+  .contact-list a:hover{color:var(--teal);}
 
-.contact a{
-  color:#d4af37;
-  text-decoration:none;
-}
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.78rem;
+    color:var(--ink-dimmer);
+    font-family:'JetBrains Mono',monospace;
+    flex-wrap:wrap;
+    gap:12px;
+  }
 
-footer{
-  padding:40px 20px;
-  text-align:center;
-  color:#777;
-  border-top:1px solid #222;
-}
+  @media(max-width:780px){
+    .contact-grid{grid-template-columns:1fr;}
+  }
 
-</style></head><body><section class="hero"><div class="container"><div class="logo">
-LISTER RECORD
-</div><h1>DEDI SANTOSO</h1><div class="subtitle">
-Composer • Music Producer • Creative Producer
-</div><div class="tagline">
-Bridging Music, Technology & Visual Storytelling from Bengkulu. Creating music, experiences, and creative productions that connect local identity with national and international audiences.
-</div><a href="#works" class="button">
-Explore My Works
-</a></div></section><section id="works"><h2>Selected Works</h2><div class="grid"><div class="card">
-<h3>🎮 Esports</h3>MPL Indonesia (Season 9 – Present)<br>
-PUBG Mobile<br>
-Free Fire<br><br>
+  @media(prefers-reduced-motion: no-preference){
+    .reveal{
+      opacity:0;
+      transform:translateY(16px);
+      transition:opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.in{
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
 
-Music Producer for major ceremony and event productions.
+<header>
+  <nav>
+    <div class="logo">DEDI<span>·</span>SANTOSO</div>
+    <div class="navlinks">
+      <a href="#about">Profil</a>
+      <a href="#journey">Perjalanan</a>
+      <a href="#works">Karya</a>
+      <a href="#expertise">Keahlian</a>
+      <a href="#contact">Kontak</a>
+    </div>
+  </nav>
+</header>
 
-</div><div class="card">
-<h3>🏛 Institution & Brand</h3>BPOM<br>
-BRI<br>
-BNI<br>
-Bank Indonesia<br>
-Government Institutions<br>
-National TVC Campaigns
+<main>
 
-</div><div class="card">
-<h3>🎭 Culture & Heritage</h3>TVRI Bengkulu<br>
-Pantun Melayu BUMN<br>
-Bengkulu Regional Music Rearrangement<br>
-Traditional Dance & Cultural Music Production
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Bengkulu, Indonesia</div>
+          <h1>Menjembatani musik,<br>teknologi,<br><em>&amp; cerita visual.</em></h1>
+          <p class="lede">Dedi Santoso — Founder Lister Record. Komposer, produser musik, dan creative producer yang mengubah akar daerah menjadi produksi berskala nasional.</p>
+          <div class="hero-roles">
+            <span class="role-tag">Komposer</span>
+            <span class="role-tag">Produser Musik</span>
+            <span class="role-tag">Creative Producer</span>
+            <span class="role-tag">Audio Branding</span>
+          </div>
+          <div class="hero-actions">
+            <a href="#works" class="btn btn-primary">Lihat Karya Pilihan</a>
+            <a href="#contact" class="btn btn-ghost">Hubungi Saya</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="images/studio.jpg" alt="Dedi Santoso di studio Lister Record, dikelilingi monitor, keyboard, dan peralatan produksi musik">
+          <div class="hero-image-cap mono">STUDIO LISTER RECORD — BENGKULU</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div></div></section><section><h2>About</h2><div class="about">Started playing music independently since 1992 and seriously pursued audio production since 2005. Expanded into visual production and creative technology while continuously exploring innovation in music, sound, and storytelling.
+  <hr class="divider">
 
-As a creative producer from Bengkulu, every work becomes an effort to prove that creativity from the regions can stand proudly on national and international stages.
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="section-num">01 — Profil</span>
+          <h2>Profil Profesional</h2>
+        </div>
+        <div class="vu" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="about-body reveal">
+        <p>Mulai bermain musik secara otodidak sejak <strong>1992</strong>, Dedi Santoso membangun fondasi kreatifnya melalui pembelajaran mandiri dan eksperimen yang terus-menerus. Sejak <strong>2005</strong>, ia menekuni produksi audio secara profesional dan memperluas keahliannya ke produksi visual, teknologi kreatif, AI, hingga produksi acara berskala besar.</p>
+        <p>Sepanjang kariernya, ia telah bekerja di berbagai industri, termasuk lembaga pemerintahan, brand nasional, televisi, budaya, dan produksi esports.</p>
+        <p>Bagi Dedi, kreativitas tidak dibatasi oleh geografi. Setiap proyek adalah kesempatan untuk membuktikan bahwa <strong>kreator dari daerah mampu menghasilkan karya berkelas dunia</strong> tanpa kehilangan identitas lokalnya.</p>
+      </div>
+    </div>
+  </section>
 
-</div></section><section><h2>Creative Journey</h2><div class="timeline"><p>
-<strong>1992</strong><br>
-Started learning and playing music independently.
-</p><p>
-<strong>2005</strong><br>
-Began professional audio production and studio activities.
-</p><p>
-<strong>2006</strong><br>
-Worked on regional music production projects with TVRI and explored visual production.
-</p><p>
-<strong>2007 – 2008</strong><br>
-Studied Mixing & Mastering at Dolphindaw Jakarta.
-</p><p>
-<strong>2009 – Present</strong><br>
-Produced mars, theme songs, regional music productions, TVC music, company profiles, and brand campaigns.
-</p><p>
-<strong>2020 – Present</strong><br>
-Expanded into VST instrument development, AI, audio technology, and large-scale national events including MPL Indonesia, PUBG Mobile, and Free Fire.
-</p></div></section><section><h2>Technical Skills</h2><div class="grid"><div class="card">
-<h3>🎧 Audio</h3>Studio One<br>
-Ableton Live<br>
-Cubase<br>
-Logic Pro<br>
-Pro Tools
+  <hr class="divider">
 
-</div><div class="card">
-<h3>🎬 Video</h3>DaVinci Resolve<br>
-Adobe Premiere Pro<br>
-Adobe After Effects<br>
-CapCut
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="section-num">02 — Linimasa</span>
+          <h2>Perjalanan Kreatif</h2>
+        </div>
+        <p class="section-sub">Lebih dari tiga dekade pertumbuhan otodidak — dari instrumen pertama hingga produksi berskala nasional.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-year">2020—Sekarang</div>
+          <div class="tl-content">
+            <h3>VST, AI &amp; Produksi Skala Besar</h3>
+            <p>Memperluas keahlian ke pengembangan instrumen VST, teknologi AI, layanan audio repair, post-processing, dan produksi acara berskala besar — kini berfokus pada musik untuk upacara besar dan produksi multimedia skala nasional, termasuk esports.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2009—Sekarang</div>
+          <div class="tl-content">
+            <h3>Audio Brand Nasional &amp; Institusi</h3>
+            <p>Memproduksi mars, theme song, musik daerah, musik company profile, musik TVC, dan proyek audio branding untuk berbagai institusi dan brand nasional.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2007—2008</div>
+          <div class="tl-content">
+            <h3>Mixing &amp; Mastering, Dolphindaw Jakarta</h3>
+            <p>Menempuh pendidikan formal untuk memperdalam keahlian mixing dan mastering, sejalan dengan praktik profesional yang sudah berjalan.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2006</div>
+          <div class="tl-content">
+            <h3>Kolaborasi dengan TVRI &amp; Dinas Pariwisata</h3>
+            <p>Memproduksi proyek musik daerah bersama TVRI dan Dinas Pariwisata sambil mulai mendalami produksi visual.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2005</div>
+          <div class="tl-content">
+            <h3>Awal Produksi Audio Profesional</h3>
+            <p>Memulai kegiatan produksi dan rekaman audio secara profesional.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2003</div>
+          <div class="tl-content">
+            <h3>Belajar Audio Secara Otodidak</h3>
+            <p>Mulai mempelajari produksi audio secara mandiri dan memperdalam pemahaman tentang teknologi musik.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1992</div>
+          <div class="tl-content">
+            <h3>Nada Pertama</h3>
+            <p>Mulai belajar dan bermain musik secara otodidak — fondasi dari semua yang terjadi setelahnya.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div><div class="card">
-<h3>🎚 Hardware</h3>PreSonus<br>
-Steinberg<br>
-Yamaha<br>
-Kali Audio<br>
-JBL Professional<br>
-Focusrite
+  <hr class="divider">
 
-</div></div></section><section><h2>Vision</h2><div class="about">To bring Bengkulu onto national and international stages through music, technology, and visual storytelling while inspiring the next generation of regional creators to believe that world-class creativity can emerge from anywhere.
+  <!-- WORKS -->
+  <section id="works">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="section-num">03 — Karya Pilihan</span>
+          <h2>Produksi &amp; Kredit</h2>
+        </div>
+        <p class="section-sub">Dari arena esports hingga warisan budaya, lembaga pemerintah hingga kampanye TVC nasional.</p>
+      </div>
 
-</div></section><section><h2>Connect</h2><div class="contact">Instagram:<br>
-<a href="https://instagram.com/dedikeyb" target="_blank">
-@dedikeyb
-</a>
+      <div class="reveal">
+        <div class="credit-block">
+          <div class="credit-head">
+            <h3>Esports</h3>
+            <span class="mono">PRODUSER MUSIK — MUSIK UPACARA &amp; EVENT</span>
+          </div>
+          <ul class="credit-list">
+            <li><span class="credit-name">Mobile Legends Professional League Indonesia (MPL ID)</span><span class="credit-role">SEASON 9 — SEKARANG</span></li>
+            <li><span class="credit-name">PUBG Mobile</span><span class="credit-role">PRODUKSI EVENT</span></li>
+            <li><span class="credit-name">Free Fire</span><span class="credit-role">PRODUKSI EVENT</span></li>
+          </ul>
+        </div>
 
-<br><br>
+        <div class="credit-block">
+          <div class="credit-head">
+            <h3>Budaya &amp; Warisan</h3>
+            <span class="mono">MENDEKATKAN IDENTITAS LOKAL KE AUDIENS MODERN</span>
+          </div>
+          <ul class="credit-list">
+            <li><span class="credit-name">Aransemen Ulang Lagu Daerah Bengkulu</span><span class="credit-role">PRODUSER</span></li>
+            <li><span class="credit-name">Produksi Musik Tari Tradisional</span><span class="credit-role">PRODUSER</span></li>
+            <li><span class="credit-name">Kolaborasi TVRI Bengkulu</span><span class="credit-role">PRODUSER</span></li>
+            <li><span class="credit-name">Produksi Musik Pariwisata Daerah</span><span class="credit-role">PRODUSER</span></li>
+          </ul>
+        </div>
 
-<a href="https://instagram.com/lister_record" target="_blank">
-@lister_record
-</a><br><br>
+        <div class="achievement-card">
+          <span class="mono">PENGHARGAAN NASIONAL</span>
+          <h3>Pantun Melayu BUMN</h3>
+          <p>Juara Nasional &amp; Pemenang Favorit Pilihan Masyarakat.</p>
+        </div>
 
-Email:<br>
-dedikeyb@gmail.com
+        <div class="credit-block">
+          <div class="credit-head">
+            <h3>Produksi Institusi</h3>
+            <span class="mono">MARS · THEME SONG · AUDIO BRANDING</span>
+          </div>
+          <ul class="credit-list">
+            <li><span class="credit-name">BPOM</span></li>
+            <li><span class="credit-name">Bank Indonesia · BRI · BNI · Bank Bengkulu</span></li>
+            <li><span class="credit-name">KPP Pratama</span></li>
+            <li><span class="credit-name">Pemerintah Kota Bengkulu &amp; Pemerintah Daerah</span></li>
+            <li><span class="credit-name">RSUD Dr. M. Yunus</span></li>
+            <li><span class="credit-name">Pengadilan Agama &amp; Kejaksaan Tinggi Bengkulu</span></li>
+            <li><span class="credit-name">Lembaga Pemasyarakatan (Lapas)</span></li>
+            <li><span class="credit-name">Organisasi Politik &amp; Lembaga Pemerintahan</span></li>
+          </ul>
+        </div>
 
-</div></section><footer>© 2026 Dedi Santoso • Lister Record • Bengkulu, Indonesia
+        <div class="credit-block">
+          <div class="credit-head">
+            <h3>TVC &amp; Proyek Brand</h3>
+            <span class="mono">MUSIK · JINGLE · AUDIO BRANDING</span>
+          </div>
+          <ul class="credit-list">
+            <li><span class="credit-name">KFC</span></li>
+            <li><span class="credit-name">Gojek</span></li>
+            <li><span class="credit-name">Pegadaian</span></li>
+            <li><span class="credit-name">Formula Toothbrush · Bio Formula</span></li>
+            <li><span class="credit-name">Virile Facial Wash · Whitening</span></li>
+            <li><span class="credit-name">Starvit · Ambeven · Milna · Heelsofh</span></li>
+            <li><span class="credit-name">+ berbagai kampanye nasional lainnya</span></li>
+          </ul>
+        </div>
 
-</footer></body>
+        <div class="credit-block">
+          <div class="credit-head">
+            <h3>Teknologi &amp; Inovasi</h3>
+            <span class="mono">RISET &amp; TEKNOLOGI KREATIF</span>
+          </div>
+          <ul class="credit-list">
+            <li><span class="credit-name">Pengembangan Instrumen VST</span></li>
+            <li><span class="credit-name">Proyek Virtual Instrument Gendang Melayu</span></li>
+            <li><span class="credit-name">Produksi Kreatif Berbasis AI</span></li>
+            <li><span class="credit-name">Audio Repair &amp; Pengembangan Workflow Post-Production</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- EXPERTISE / TOOLS -->
+  <section id="expertise">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="section-num">04 — Peralatan &amp; Keahlian</span>
+          <h2>Setup &amp; Keahlian Utama</h2>
+        </div>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-card">
+          <h3>Produksi Audio</h3>
+          <ul>
+            <li>Presonus Studio One</li>
+            <li>Ableton Live</li>
+            <li>Cubase</li>
+            <li>Logic Pro</li>
+            <li>Pro Tools</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Video &amp; Visual</h3>
+          <ul>
+            <li>DaVinci Resolve</li>
+            <li>Adobe Premiere Pro</li>
+            <li>Adobe After Effects</li>
+            <li>CapCut</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Hardware</h3>
+          <ul>
+            <li>PreSonus · Steinberg</li>
+            <li>Yamaha</li>
+            <li>Kali Audio · JBL Professional</li>
+            <li>Focusrite</li>
+          </ul>
+        </div>
+      </div>
+      <div class="skill-card reveal" style="margin-top:1px;">
+        <h3>Keahlian Utama</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;">
+          <span class="role-tag">Produksi Musik</span>
+          <span class="role-tag">Komposisi</span>
+          <span class="role-tag">Aransemen</span>
+          <span class="role-tag">Sound Design</span>
+          <span class="role-tag">Audio for Visual</span>
+          <span class="role-tag">Mixing &amp; Mastering</span>
+          <span class="role-tag">Creative Direction</span>
+          <span class="role-tag">Pengembangan Konsep Visual</span>
+          <span class="role-tag">Musik Upacara &amp; Event</span>
+          <span class="role-tag">Audio Branding</span>
+          <span class="role-tag">Produksi Musik Budaya</span>
+          <span class="role-tag">Produksi Multimedia</span>
+          <span class="role-tag">AI Creative Workflow</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="vision">
+    <div class="wrap reveal">
+      <div class="eyebrow">Visi</div>
+      <h2>"Membawa Bengkulu ke panggung nasional dan internasional melalui musik, teknologi, dan cerita visual."</h2>
+      <p>Melalui setiap produksi, Dedi Santoso berusaha membuktikan bahwa kreativitas dari daerah dapat berdiri sejajar dengan standar global — menjaga identitas lokal sekaligus menginspirasi generasi kreator berikutnya.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-grid reveal">
+        <div>
+          <span class="section-num">05 — Kontak</span>
+          <h2>Mari wujudkan<br>produksi berikutnya.</h2>
+          <p class="lede">Founder Lister Record, berbasis di Bengkulu, Indonesia — terbuka untuk kolaborasi musik, audio branding, dan produksi kreatif.</p>
+        </div>
+        <ul class="contact-list">
+          <li>
+            <span class="mono">EMAIL</span>
+            <a href="mailto:dedikeyb@gmail.com">dedikeyb@gmail.com</a>
+          </li>
+          <li>
+            <span class="mono">INSTAGRAM</span>
+            <a href="https://instagram.com/dedikeyb" target="_blank" rel="noopener">@dedikeyb</a>
+          </li>
+          <li>
+            <span class="mono">STUDIO</span>
+            <a href="https://instagram.com/lister_record" target="_blank" rel="noopener">@lister_record</a>
+          </li>
+          <li>
+            <span class="mono">WEBSITE</span>
+            <a href="https://dedikeyb.github.io" target="_blank" rel="noopener">dedikeyb.github.io</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 DEDI SANTOSO — LISTER RECORD</span>
+    <span>BENGKULU, INDONESIA</span>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(i => io.observe(i));
+  } else {
+    items.forEach(i => i.classList.add('in'));
+  }
+</script>
+
+</body>
 </html>
