@@ -6,275 +6,111 @@
 <title>Showreel | Dedi Santoso</title>
 
 <style>
-
-*{
-  box-sizing:border-box;
-}
-
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:Arial, sans-serif;
   background:#0b0b0b;
-  color:#ffffff;
+  color:#fff;
   line-height:1.7;
 }
 
-header{
-  padding:80px 20px;
-  text-align:center;
-  background:
-  linear-gradient(
-  rgba(0,0,0,.75),
-  rgba(0,0,0,.90)
-  );
-}
-
-.logo{
-  color:#d4af37;
-  letter-spacing:4px;
-  font-size:18px;
-  margin-bottom:20px;
-}
-
-h1{
-  margin:0;
-  font-size:48px;
-}
-
-.subtitle{
-  margin-top:15px;
-  color:#d4af37;
-  font-size:20px;
-}
-
-.tagline{
-  max-width:800px;
-  margin:30px auto 0;
-  color:#cccccc;
-}
-
-section{
-  padding:80px 20px;
-}
-
 .container{
-  max-width:1100px;
+  max-width:900px;
   margin:auto;
+  padding:50px 20px;
 }
 
-h2{
+h1,h2{
   color:#d4af37;
-  text-align:center;
-  margin-bottom:50px;
 }
 
 .card{
   background:#151515;
-  border-radius:20px;
-  padding:30px;
-  margin-bottom:40px;
+  padding:25px;
+  border-radius:15px;
+  margin-bottom:25px;
 }
 
-.card h3{
-  margin-top:0;
-}
-
-.video-box{
-  position:relative;
-  padding-bottom:56.25%;
-  height:0;
-  overflow:hidden;
-  border-radius:16px;
-  margin-top:20px;
-}
-
-.video-box iframe{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  border:0;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(320px,1fr));
-  gap:25px;
-}
-
-a.button{
-  display:inline-block;
-  margin-top:30px;
-  padding:14px 30px;
-  background:#d4af37;
-  color:#000;
+a{
+  color:#d4af37;
   text-decoration:none;
-  border-radius:50px;
-  font-weight:bold;
 }
 
-footer{
-  padding:40px;
-  text-align:center;
-  color:#777;
-  border-top:1px solid #222;
+small{
+  color:#aaa;
 }
-
 </style>
-
 </head>
 
 <body>
 
-<header>
-
-<div class="logo">
-LISTER RECORD
-</div>
-
-<h1>SHOWREEL</h1>
-
-<div class="subtitle">
-Dedi Santoso
-</div>
-
-<div class="tagline">
-Kumpulan karya pilihan di bidang esports, TVC, mars, dan produksi musik untuk berbagai kebutuhan event dan multimedia.
-</div>
-
-<a href="index.html" class="button">
-← Kembali ke Beranda
-</a>
-
-</header>
-
-
-<section>
-
 <div class="container">
 
-<h2>🌍 Proyek Unggulan Internasional</h2>
-
-<div class="card">
-
-<h3>M7 World Championship</h3>
-
+<h1>🎬 Dedi Santoso Showreel</h1>
 <p>
-Music Producer – Ceremony & Event Music Production
+Composer • Music Producer • Creative Producer<br>
+Founder – Lister Record | Bengkulu, Indonesia
 </p>
 
-<div class="video-box">
-
-<iframe
-src="https://www.youtube.com/embed/ZyYyKXdDvgQ?start=251"
-allowfullscreen>
-</iframe>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section>
-
-<div class="container">
-
-<h2>🎮 Esports</h2>
-
-<div class="grid">
-
 <div class="card">
-<h3>Mobile Legends Professional League Indonesia</h3>
-<p>Music Producer – Season 9 hingga Sekarang</p>
-<a href="https://youtu.be/AW1YQQTz4sk?t=1846" target="_blank">
-Tonton Showreel →
+<h2>🌍 M7 World Championship</h2>
+<p>Music Producer – Ceremony & Event Music Production</p>
+<a href="https://youtu.be/ZyYyKXdDvgQ?t=251" target="_blank">
+▶ Watch Showreel
 </a>
 </div>
 
 <div class="card">
-<h3>PUBG Mobile</h3>
+<h2>🎮 MPL Indonesia</h2>
+<p>Music Producer – Ceremony & Event Music Production</p>
+
+<a href="https://youtu.be/AW1YQQTz4sk?t=1846" target="_blank">▶ MPL Showreel 1</a><br>
+<a href="https://youtu.be/8KXgFMa-qhA?t=3841" target="_blank">▶ MPL Showreel 2</a><br>
+<a href="https://youtu.be/j0J3Q3toxDs?t=1417" target="_blank">▶ MPL Showreel 3</a><br>
+<a href="https://www.youtube.com/watch?v=GC4CmToW0d0" target="_blank">▶ MPL Showreel 4</a><br>
+<a href="https://www.youtube.com/watch?v=5SfrVGoRgjs" target="_blank">▶ MPL Showreel 5</a><br>
+<a href="https://www.youtube.com/watch?v=8wOi4vseeKM" target="_blank">▶ MPL Showreel 6</a><br>
+<a href="https://youtu.be/kxOQKzUif4I?t=8613" target="_blank">▶ MPL Showreel 7</a><br>
+<a href="https://youtu.be/u7dLw-qpMMM?t=5205" target="_blank">▶ MPL Showreel 8</a>
+</div>
+
+<div class="card">
+<h2>🎮 PUBG Mobile</h2>
 <p>Music Producer – Ceremony & Event Music Production</p>
 <a href="https://youtu.be/hrB8NnRgj-w?t=834" target="_blank">
-Tonton Showreel →
+▶ Watch Showreel
 </a>
 </div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section>
-
-<div class="container">
-
-<h2>📺 TVC & Brand</h2>
 
 <div class="card">
-
-<h3>Sikat Gigi Formula</h3>
-
-<p>
-Kolaborasi bersama Cleopatra dan Gigi Cherrybelle.
-</p>
-
+<h2>📺 Formula TVC</h2>
+<p>Collaboration with Cleopatra & Gigi Cherrybelle</p>
 <a href="https://youtu.be/9-mumHs5wOQ?t=29" target="_blank">
-Tonton Showreel →
+▶ Watch Showreel
 </a>
-
 </div>
 
-</div>
-
-</section>
-
-
-<section>
-
-<div class="container">
-
+<div class="card">
 <h2>🏛 Mars & Theme Song</h2>
 
-<div class="grid">
-
-<div class="card">
-<h3>Mars – Showreel 01</h3>
-
 <a href="https://youtu.be/2WmTLTRWC50?t=8" target="_blank">
-Tonton Showreel →
+▶ Mars Showreel 1
 </a>
-
-</div>
-
-<div class="card">
-<h3>Mars – Showreel 02</h3>
+<br><br>
 
 <a href="https://www.youtube.com/watch?v=Qg4I_lFwN8c" target="_blank">
-Tonton Showreel →
+▶ Mars Showreel 2
 </a>
-
 </div>
 
-</div>
+<p>
+<small>
+Instagram: @dedikeyb | @lister_record<br>
+Email: dedikeyb@gmail.com
+</small>
+</p>
 
 </div>
-
-</section>
-
-
-<footer>
-
-© 2026 Dedi Santoso • Lister Record • Bengkulu, Indonesia
-
-</footer>
 
 </body>
 </html>
