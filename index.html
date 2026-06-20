@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +12,16 @@
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
   background:#0b0b0b;
   color:#ffffff;
-  line-height:1.7;
+  line-height:1.8;
 }
 
 .hero{
@@ -30,7 +34,8 @@ body{
   background:
   linear-gradient(
   rgba(0,0,0,.75),
-  rgba(0,0,0,.85));
+  rgba(0,0,0,.90)
+  );
 }
 
 .container{
@@ -57,14 +62,14 @@ h1{
 }
 
 .tagline{
-  max-width:700px;
+  max-width:750px;
   margin:30px auto;
-  color:#cccccc;
+  color:#d5d5d5;
 }
 
 .button{
   display:inline-block;
-  padding:14px 30px;
+  padding:14px 32px;
   border-radius:50px;
   background:#d4af37;
   color:#000;
@@ -92,24 +97,15 @@ h2{
 .card{
   background:#151515;
   padding:30px;
-  border-radius:18px;
+  border-radius:20px;
 }
 
 .card h3{
   margin-top:0;
 }
 
-.timeline{
-  max-width:850px;
-  margin:auto;
-}
-
-.timeline p{
-  margin-bottom:22px;
-}
-
 .about{
-  max-width:850px;
+  max-width:900px;
   margin:auto;
   text-align:center;
   color:#d5d5d5;
@@ -124,11 +120,46 @@ h2{
   text-decoration:none;
 }
 
+.video-box{
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+  overflow:hidden;
+  border-radius:16px;
+}
+
+.video-box iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.badge{
+  margin-top:25px;
+  text-align:center;
+  color:#d4af37;
+}
+
 footer{
   padding:40px 20px;
   text-align:center;
   color:#777;
   border-top:1px solid #222;
+}
+
+@media(max-width:768px){
+
+h1{
+  font-size:38px;
+}
+
+.subtitle{
+  font-size:18px;
+}
+
 }
 
 </style>
@@ -152,53 +183,88 @@ Composer • Music Producer • Creative Producer
 </div>
 
 <div class="tagline">
-Bridging Music, Technology & Visual Storytelling from Bengkulu. Creating music, experiences, and creative productions that connect local identity with national and international audiences.
+Berkarya dari Bengkulu untuk Indonesia dan dunia melalui musik, teknologi, dan visual storytelling.
 </div>
 
-<a href="#works" class="button">
-Explore My Works
+<a href="#featured" class="button">
+Lihat Karya
 </a>
 
 </div>
 
 </section>
 
-<section id="works">
+<section id="featured">
 
-<h2>Selected Works</h2>
+<h2>🌍 Proyek Unggulan Internasional</h2>
+
+<div class="card" style="max-width:1000px; margin:auto;">
+
+<h3>M7 World Championship</h3>
+
+<p>
+<strong>Music Producer – Ceremony & Event Music Production</strong>
+</p>
+
+<p>
+Berkontribusi dalam produksi musik untuk kebutuhan ceremony dan pengalaman audio pada M7 World Championship, salah satu ajang esports Mobile Legends terbesar di dunia yang disaksikan jutaan penonton secara global.
+</p>
+
+<div class="video-box">
+
+<iframe
+src="https://www.youtube.com/embed/ZyYyKXdDvgQ?start=251"
+title="M7 World Championship"
+allowfullscreen>
+</iframe>
+
+</div>
+
+<div class="badge">
+🌍 International Project • 🎮 Mobile Legends World Championship • 📍 Produced from Bengkulu, Indonesia
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Karya Pilihan</h2>
 
 <div class="grid">
 
 <div class="card">
 <h3>🎮 Esports</h3>
 
-MPL Indonesia (Season 9 – Present)<br>
+Mobile Legends Professional League Indonesia (Season 9 – Sekarang)<br>
 PUBG Mobile<br>
 Free Fire<br><br>
 
-Music Producer for major ceremony and event productions.
+Music Producer untuk berbagai kebutuhan ceremony, opening, dan event productions berskala nasional dan internasional.
 
 </div>
 
 <div class="card">
-<h3>🏛 Institution & Brand</h3>
+<h3>🏛 Instansi & Brand</h3>
 
 BPOM<br>
 BRI<br>
 BNI<br>
 Bank Indonesia<br>
-Government Institutions<br>
-National TVC Campaigns
+Bank Bengkulu<br>
+Berbagai Instansi Pemerintah<br>
+Brand dan TVC Nasional
 
 </div>
 
 <div class="card">
-<h3>🎭 Culture & Heritage</h3>
+<h3>🎭 Budaya & Warisan Daerah</h3>
 
-TVRI Bengkulu<br>
-Pantun Melayu BUMN<br>
-Bengkulu Regional Music Rearrangement<br>
-Traditional Dance & Cultural Music Production
+Kolaborasi bersama TVRI Bengkulu<br>
+Rearrangement Lagu Daerah Bengkulu<br>
+Produksi Musik Tari Tradisional<br>
+Produksi Musik Budaya dan Pariwisata
 
 </div>
 
@@ -208,53 +274,13 @@ Traditional Dance & Cultural Music Production
 
 <section>
 
-<h2>About</h2>
+<h2>Tentang Saya</h2>
 
 <div class="about">
 
-Started playing music independently since 1992 and seriously pursued audio production since 2005. Expanded into visual production and creative technology while continuously exploring innovation in music, sound, and storytelling.
+Dedi Santoso adalah seorang Composer, Music Producer, dan Creative Producer asal Bengkulu yang telah berkarya di bidang musik, audio engineering, visual storytelling, dan teknologi kreatif selama lebih dari tiga dekade.
 
-As a creative producer from Bengkulu, every work becomes an effort to prove that creativity from the regions can stand proudly on national and international stages.
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Creative Journey</h2>
-
-<div class="timeline">
-
-<p>
-<strong>1992</strong><br>
-Started learning and playing music independently.
-</p>
-
-<p>
-<strong>2005</strong><br>
-Began professional audio production and studio activities.
-</p>
-
-<p>
-<strong>2006</strong><br>
-Worked on regional music production projects with TVRI and explored visual production.
-</p>
-
-<p>
-<strong>2007 – 2008</strong><br>
-Studied Mixing & Mastering at Dolphindaw Jakarta.
-</p>
-
-<p>
-<strong>2009 – Present</strong><br>
-Produced mars, theme songs, regional music productions, TVC music, company profiles, and brand campaigns.
-</p>
-
-<p>
-<strong>2020 – Present</strong><br>
-Expanded into VST instrument development, AI, audio technology, and large-scale national events including MPL Indonesia, PUBG Mobile, and Free Fire.
-</p>
+Berawal dari pembelajaran musik secara otodidak sejak tahun 1992, ia terus mengembangkan kemampuan di bidang produksi audio, visual, multimedia, hingga teknologi AI. Melalui Lister Record, ia membawa misi untuk membuktikan bahwa kreativitas dari daerah mampu berdiri sejajar di tingkat nasional maupun internasional.
 
 </div>
 
@@ -262,54 +288,11 @@ Expanded into VST instrument development, AI, audio technology, and large-scale 
 
 <section>
 
-<h2>Technical Skills</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>🎧 Audio</h3>
-
-Studio One<br>
-Ableton Live<br>
-Cubase<br>
-Logic Pro<br>
-Pro Tools
-
-</div>
-
-<div class="card">
-<h3>🎬 Video</h3>
-
-DaVinci Resolve<br>
-Adobe Premiere Pro<br>
-Adobe After Effects<br>
-CapCut
-
-</div>
-
-<div class="card">
-<h3>🎚 Hardware</h3>
-
-PreSonus<br>
-Steinberg<br>
-Yamaha<br>
-Kali Audio<br>
-JBL Professional<br>
-Focusrite
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Vision</h2>
+<h2>Visi</h2>
 
 <div class="about">
 
-To bring Bengkulu onto national and international stages through music, technology, and visual storytelling while inspiring the next generation of regional creators to believe that world-class creativity can emerge from anywhere.
+Membawa nama Bengkulu ke kancah nasional dan internasional melalui musik, teknologi, dan visual storytelling, serta menginspirasi generasi kreatif berikutnya untuk terus berkarya dari mana pun mereka berasal.
 
 </div>
 
@@ -317,12 +300,15 @@ To bring Bengkulu onto national and international stages through music, technolo
 
 <section>
 
-<h2>Connect</h2>
+<h2>Terhubung</h2>
 
 <div class="contact">
 
-Instagram:<br> <a href="https://instagram.com/dedikeyb" target="_blank">
-@dedikeyb </a>
+Instagram<br><br>
+
+<a href="https://instagram.com/dedikeyb" target="_blank">
+@dedikeyb
+</a>
 
 <br><br>
 
@@ -332,8 +318,11 @@ Instagram:<br> <a href="https://instagram.com/dedikeyb" target="_blank">
 
 <br><br>
 
-Email:<br>
-[dedikeyb@gmail.com](mailto:dedikeyb@gmail.com)
+Email<br><br>
+
+<a href="mailto:dedikeyb@gmail.com">
+dedikeyb@gmail.com
+</a>
 
 </div>
 
@@ -344,33 +333,6 @@ Email:<br>
 © 2026 Dedi Santoso • Lister Record • Bengkulu, Indonesia
 
 </footer>
-<section id="featured-showreel">
 
-<h2>🌍 Featured International Project</h2>
-
-<div class="card">
-
-<h3>M7 World Championship</h3>
-
-<p>
-Music Producer – Ceremony & Event Music Production
-</p>
-
-<p>
-Berkontribusi dalam produksi musik untuk kebutuhan ceremony dan pengalaman audio pada M7 World Championship, salah satu ajang esports Mobile Legends terbesar di dunia yang disaksikan jutaan penonton secara global.
-</p>
-
-<iframe
-width="100%"
-height="500"
-src="https://www.youtube.com/embed/ZyYyKXdDvgQ?start=251"
-title="M7 World Championship"
-frameborder="0"
-allowfullscreen>
-</iframe>
-
-</div>
-
-</section>
 </body>
 </html>
