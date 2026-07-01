@@ -588,27 +588,37 @@
 ══════════════════════════════════════════ -->
 <script>
 /* ════════════════════════════════════════
-   SOUNDCLOUD WIDGET API INTEGRATION
-   Playlist: dedikeyb/sets/dedikeyb-audio-production
-   Docs: https://developers.soundcloud.com/docs/api/html5-widget
+   SOUNDCLOUD WIDGET API — ROBUST VERSION
+   Fix: getSounds() kadang return data kosong.
+   Solusi: skip ke tiap track satu per satu,
+   ambil data via getCurrentSound(), tunggu
+   sampai semua terisi sebelum render.
 ════════════════════════════════════════ */
 
 (function () {
-    const SC_API = 'https://w.soundcloud.com/player/api.js';
+    const SC_API   = 'https://w.soundcloud.com/player/api.js';
     const iframeEl = document.getElementById('sc-widget');
-    const container = document.getElementById('playlist-container');
-    const loadingEl = document.getElementById('tracklist-loading');
-    const countEl   = document.getElementById('playlist-count');
-    const npLabel   = document.getElementById('now-playing-label');
-    const npTitle   = document.getElementById('np-title');
-    const npDur     = document.getElementById('np-dur');
+    const container= document.getElementById('playlist-container');
+    const loadingEl= document.getElementById('tracklist-loading');
+    const countEl  = document.getElementById('playlist-count');
+    const npLabel  = document.getElementById('now-playing-label');
+    const npTitle  = document.getElementById('np-title');
+    const npDur    = document.getElementById('np-dur');
 
-    let widget, tracks = [], currentIdx = -1;
+    let widget, tracks = [], totalTracks = 0, currentIdx = -1;
+    let fetchedCount = 0, fetchInProgress = false;
 
-    /* ── Format ms → m:ss ── */
+    /* ── ms → m:ss ── */
     function fmtDur(ms) {
+        if (!ms || isNaN(ms)) return '--:--';
         const s = Math.round(ms / 1000);
         return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    }
+
+    /* ── Sanitize title ── */
+    function cleanTitle(t) {
+        if (!t || t === 'undefined') return 'Track ' + (fetchedCount + 1);
+        return t;
     }
 
     /* ── Render tracklist ── */
@@ -631,16 +641,16 @@
             </div>
         `).join('');
 
-        /* Click to skip to track */
         container.querySelectorAll('.sr-item').forEach(el => {
             el.addEventListener('click', () => {
-                widget.skip(parseInt(el.dataset.idx));
+                const idx = parseInt(el.dataset.idx);
+                widget.skip(idx);
                 widget.play();
             });
         });
     }
 
-    /* ── Update Now Playing bar ── */
+    /* ── Update Now Playing ── */
     function updateNowPlaying(idx) {
         currentIdx = idx;
         const t = tracks[idx];
@@ -648,42 +658,124 @@
         npLabel.classList.remove('hidden');
         npLabel.style.display = 'flex';
         npTitle.textContent = t.title;
-        npDur.textContent    = fmtDur(t.duration);
+        npDur.textContent   = fmtDur(t.duration);
         renderList();
-        /* Auto-scroll active item into view */
         const active = container.querySelector('.sr-item.active');
         if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
 
-    /* ── Load SC API then init widget ── */
+    /* ── Fetch each track by navigating to it ──
+       SC Widget API hanya guarantee data lengkap
+       setelah track di-skip ke dan PLAY_PROGRESS
+       terpicu. Kita skip ke setiap track, baca
+       getCurrentSound(), lalu kembali ke track 0. ── */
+    function fetchTrackData(idx, callback) {
+        widget.skip(idx);
+        /* Tunggu sebentar agar metadata ter-load */
+        setTimeout(function () {
+            widget.getCurrentSound(function (sound) {
+                callback(sound);
+            });
+        }, 350);
+    }
+
+    function fetchAllTracks(total) {
+        if (fetchInProgress) return;
+        fetchInProgress = true;
+        tracks = new Array(total).fill(null);
+        let pending = total;
+
+        for (let i = 0; i < total; i++) {
+            (function (idx) {
+                /* Stagger requests agar tidak race condition */
+                setTimeout(function () {
+                    fetchTrackData(idx, function (sound) {
+                        tracks[idx] = {
+                            title:    cleanTitle(sound && sound.title),
+                            duration: (sound && sound.duration) ? sound.duration : 0,
+                            permalink_url: sound && sound.permalink_url
+                        };
+                        pending--;
+                        /* Render incremental — tampilkan yang sudah ada */
+                        if (pending <= 0) {
+                            /* Semua selesai: kembali ke track pertama */
+                            widget.skip(0);
+                            widget.pause();
+                            renderList();
+                        } else if (pending === total - 1) {
+                            /* Render setelah track pertama masuk */
+                            renderList();
+                        }
+                    });
+                }, idx * 420); /* 420ms gap antar request */
+            })(i);
+        }
+    }
+
+    /* ── Load SC API ── */
     const script = document.createElement('script');
     script.src = SC_API;
     script.onload = function () {
         widget = SC.Widget(iframeEl);
 
         widget.bind(SC.Widget.Events.READY, function () {
-            /* Fetch all tracks in playlist */
+            /* Coba getSounds() dulu — jika title valid, pakai langsung */
             widget.getSounds(function (sounds) {
-                tracks = sounds;
-                renderList();
+                const allValid = sounds && sounds.length > 0 &&
+                    sounds.every(s => s && s.title && s.title !== 'undefined' && s.duration > 0);
+
+                if (allValid) {
+                    /* Data langsung valid — render sekarang */
+                    tracks = sounds.map(s => ({
+                        title:    s.title,
+                        duration: s.duration,
+                        permalink_url: s.permalink_url
+                    }));
+                    renderList();
+                } else {
+                    /* Fallback: fetch per-track */
+                    totalTracks = sounds ? sounds.length : 0;
+                    if (totalTracks === 0) {
+                        /* Coba baca jumlah dari getSounds sekali lagi */
+                        setTimeout(function () {
+                            widget.getSounds(function (s2) {
+                                fetchAllTracks(s2 ? s2.length : 14);
+                            });
+                        }, 800);
+                    } else {
+                        fetchAllTracks(totalTracks);
+                    }
+                }
             });
         });
 
+        /* Sinkronisasi Now Playing */
         widget.bind(SC.Widget.Events.PLAY, function () {
             widget.getCurrentSoundIndex(function (idx) {
-                updateNowPlaying(idx);
+                /* Update now playing dari data yang sudah ter-fetch */
+                if (tracks[idx] && tracks[idx].title) {
+                    updateNowPlaying(idx);
+                } else {
+                    /* Data belum ready, ambil langsung */
+                    widget.getCurrentSound(function (s) {
+                        if (s && !tracks[idx]) tracks[idx] = { title: cleanTitle(s.title), duration: s.duration || 0 };
+                        currentIdx = idx;
+                        npLabel.classList.remove('hidden');
+                        npLabel.style.display = 'flex';
+                        npTitle.textContent = tracks[idx] ? tracks[idx].title : cleanTitle(s && s.title);
+                        npDur.textContent   = fmtDur(s && s.duration);
+                        renderList();
+                    });
+                }
             });
         });
 
         widget.bind(SC.Widget.Events.PLAY_PROGRESS, function () {
-            /* keep tracklist in sync if user skips via SC controls */
             widget.getCurrentSoundIndex(function (idx) {
-                if (idx !== currentIdx) updateNowPlaying(idx);
+                if (idx !== currentIdx && tracks[idx] && tracks[idx].title) {
+                    updateNowPlaying(idx);
+                }
             });
-        });
-
-        widget.bind(SC.Widget.Events.PAUSE, function () {
-            /* dim eq bars on pause — just remove class momentarily */
         });
     };
     document.head.appendChild(script);
